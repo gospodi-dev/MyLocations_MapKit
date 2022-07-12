@@ -26,9 +26,32 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     // MARK: - Actions
     @IBAction func getLocation() {
+        // запросить разрешение, прежде чем получить доступ к информации о местоположении
+        let authStatus = locationManager.authorizationStatus
+        if authStatus == .notDetermined {
+          locationManager.requestWhenInUseAuthorization()
+          return
+        }
+        
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters // точность позиционирования до 10ти метров
         locationManager.startUpdatingLocation()
+    }
+    
+    // MARK: - CLLocationManagerDelegate
+    func locationManager(
+      _ manager: CLLocationManager,
+      didFailWithError error: Error
+    ) {
+      print("didFailWithError \(error.localizedDescription)")
+    }
+
+    func locationManager(
+      _ manager: CLLocationManager,
+      didUpdateLocations locations: [CLLocation]
+    ) {
+      let newLocation = locations.last!
+      print("didUpdateLocations \(newLocation)")
     }
 }
 
