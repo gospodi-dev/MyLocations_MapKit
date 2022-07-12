@@ -10,13 +10,6 @@ import CoreLocation
 
 class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
     
-    let locationManager = CLLocationManager()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var latitudeLabel: UILabel!
     @IBOutlet weak var longitudeLabel: UILabel!
@@ -24,12 +17,26 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var getButton: UIButton!
     
+    let locationManager = CLLocationManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
     // MARK: - Actions
     @IBAction func getLocation() {
+        
         // запросить разрешение, прежде чем получить доступ к информации о местоположении
         let authStatus = locationManager.authorizationStatus
         if authStatus == .notDetermined {
           locationManager.requestWhenInUseAuthorization()
+          return
+        }
+        
+        // предупреждение, если статус авторизации отклонен или ограничен
+        if authStatus == .denied || authStatus == .restricted {
+          showLocationServicesDeniedAlert()
           return
         }
         
