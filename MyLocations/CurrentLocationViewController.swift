@@ -22,7 +22,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        updateLabels()
     }
     
     // MARK: - Actions
@@ -62,7 +62,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         let newLocation = locations.last!
         print("didUpdateLocations \(newLocation)")
         location = newLocation
-        upgradeLabels()
+        updateLabels()
     }
     // MARK: - Helper Methods
     func showLocationServicesDeniedAlert() {
