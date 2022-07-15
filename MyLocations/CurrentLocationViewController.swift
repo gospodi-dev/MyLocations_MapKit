@@ -18,6 +18,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var getButton: UIButton!
     
     let locationManager = CLLocationManager()
+    var location: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +31,14 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         // запросить разрешение, прежде чем получить доступ к информации о местоположении
         let authStatus = locationManager.authorizationStatus
         if authStatus == .notDetermined {
-          locationManager.requestWhenInUseAuthorization()
-          return
+            locationManager.requestWhenInUseAuthorization()
+            return
         }
         
         // предупреждение, если статус авторизации отклонен или ограничен
         if authStatus == .denied || authStatus == .restricted {
-          showLocationServicesDeniedAlert()
-          return
+            showLocationServicesDeniedAlert()
+            return
         }
         
         locationManager.delegate = self
@@ -47,33 +48,38 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     // MARK: - CLLocationManagerDelegate
     func locationManager(
-      _ manager: CLLocationManager,
-      didFailWithError error: Error
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
     ) {
-      print("didFailWithError \(error.localizedDescription)")
+        print("didFailWithError \(error.localizedDescription)")
+    
     }
-
+    
     func locationManager(
-      _ manager: CLLocationManager,
-      didUpdateLocations locations: [CLLocation]
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
     ) {
-      let newLocation = locations.last!
-      print("didUpdateLocations \(newLocation)")
+        let newLocation = locations.last!
+        print("didUpdateLocations \(newLocation)")
+        location = newLocation
+        upgradeLabels()
     }
     // MARK: - Helper Methods
     func showLocationServicesDeniedAlert() {
-      let alert = UIAlertController(
-        title: "Location Services Disabled",
-        message: "Please enable location services for this app in Settings.",
-        preferredStyle: .alert)
-
-      let okAction = UIAlertAction(
-        title: "OK",
-        style: .default,
-        handler: nil)
-      alert.addAction(okAction)
-
-      present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(
+            title: "Location Services Disabled",
+            message: "Please enable location services for this app in Settings.",
+            preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
     }
+    
+    
 }
 
