@@ -133,6 +133,15 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
       configureGetButton()
     }
     
+    func startLocationManager() {
+      if CLLocationManager.locationServicesEnabled() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
+        updatingLocation = true
+      }
+    }
+    
     func stopLocationManager() {
       if updatingLocation {
         locationManager.stopUpdatingLocation()
