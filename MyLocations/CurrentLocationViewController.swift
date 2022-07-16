@@ -98,13 +98,39 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
           location.coordinate.longitude)
         tagButton.isHidden = false
         messageLabel.text = ""
+
+        if let placemark = placemark {
+          addressLabel.text = string(from: placemark)
+        } else if performingReverseGeocoding {
+          addressLabel.text = "Searching for Address..."
+        } else if lastGeocodingError != nil {
+          addressLabel.text = "Error Finding Address"
+        } else {
+          addressLabel.text = "No Address Found"
+        }
       } else {
         latitudeLabel.text = ""
         longitudeLabel.text = ""
         addressLabel.text = ""
         tagButton.isHidden = true
-        messageLabel.text = "Tap 'Get My Location' to Start"
+
+        let statusMessage: String
+        if let error = lastLocationError as NSError? {
+          if error.domain == kCLErrorDomain && error.code == CLError.denied.rawValue {
+            statusMessage = "Location Services Disabled"
+          } else {
+            statusMessage = "Error Getting Location"
+          }
+        } else if !CLLocationManager.locationServicesEnabled() {
+          statusMessage = "Location Services Disabled"
+        } else if updatingLocation {
+          statusMessage = "Searching..."
+        } else {
+          statusMessage = "Tap 'Get My Location' to Start"
+        }
+        messageLabel.text = statusMessage
       }
+      configureGetButton()
     }
     
     func stopLocationManager() {
