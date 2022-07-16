@@ -41,6 +41,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         if authStatus == .denied || authStatus == .restricted {
             showLocationServicesDeniedAlert()
             return
+            startLocationManager()
+            updateLabels()
         }
         
         locationManager.delegate = self
@@ -70,6 +72,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         let newLocation = locations.last!
         print("didUpdateLocations \(newLocation)")
         location = newLocation
+        lastLocationError = nil
         updateLabels()
     }
     // MARK: - Helper Methods
