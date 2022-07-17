@@ -26,6 +26,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     var placemark: CLPlacemark?
     var performingReverseGeocoding = false
     var lastGeocodingError: Error?
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
