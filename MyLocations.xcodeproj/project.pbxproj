@@ -14,6 +14,7 @@
 		CC91F479287C9D3F00C7571E /* MyLocations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC91F477287C9D3F00C7571E /* MyLocations.xcdatamodeld */; };
 		CC91F47B287C9D3F00C7571E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC91F47A287C9D3F00C7571E /* Assets.xcassets */; };
 		CC91F47E287C9D3F00C7571E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC91F47C287C9D3F00C7571E /* LaunchScreen.storyboard */; };
+		CCF02C832885F4E6005CEF55 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF02C822885F4E6005CEF55 /* LocationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CC91F47A287C9D3F00C7571E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC91F47D287C9D3F00C7571E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC91F47F287C9D3F00C7571E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCF02C822885F4E6005CEF55 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				CC91F47C287C9D3F00C7571E /* LaunchScreen.storyboard */,
 				CC91F47F287C9D3F00C7571E /* Info.plist */,
 				CC91F477287C9D3F00C7571E /* MyLocations.xcdatamodeld */,
+				CCF02C822885F4E6005CEF55 /* LocationDetailsViewController.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				CC91F46F287C9D3E00C7571E /* AppDelegate.swift in Sources */,
 				CC91F479287C9D3F00C7571E /* MyLocations.xcdatamodeld in Sources */,
 				CC91F471287C9D3E00C7571E /* SceneDelegate.swift in Sources */,
+				CCF02C832885F4E6005CEF55 /* LocationDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
