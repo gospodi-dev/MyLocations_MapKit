@@ -32,10 +32,15 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         super.viewDidLoad()
         updateLabels()
     }
-    // скрываем панель навигации 
+    // скрываем панель навигации
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
       navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+      super.viewWillDisappear(animated)
+      navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Actions
