@@ -158,7 +158,13 @@
                             <outlet property="delegate" destination="WsE-m1-pRj" id="2j9-ek-leC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SE9-xf-LLu"/>
+                    <navigationItem key="navigationItem" id="SE9-xf-LLu">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="z8y-Kn-LXW">
+                            <connections>
+                                <action selector="cancel" destination="WsE-m1-pRj" id="FeH-tF-NoH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5d-q2-fIs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
